@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "c8VFLsycMEhibsPodYlYIhTb9zH4MpUrhCpnK+aPZG0L4LNc/gCZNDmf5o933F2gpHsQ2oIY3HVkXd0ZCdNTLw==",
+  "success": true,
+  "projectFilePath": "/Volumes/Mac Drive/doctrine/doctrine-api/doctrine-api.csproj",
+  "expectedPackageFiles": [
+    "/Users/bibeksaini/.nuget/packages/microsoft.aspnetcore.spaservices.extensions/6.0.13/microsoft.aspnetcore.spaservices.extensions.6.0.13.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/microsoft.extensions.fileproviders.abstractions/6.0.0/microsoft.extensions.fileproviders.abstractions.6.0.0.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/microsoft.extensions.fileproviders.physical/6.0.0/microsoft.extensions.fileproviders.physical.6.0.0.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/microsoft.extensions.filesystemglobbing/6.0.0/microsoft.extensions.filesystemglobbing.6.0.0.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
+    "/Users/bibeksaini/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

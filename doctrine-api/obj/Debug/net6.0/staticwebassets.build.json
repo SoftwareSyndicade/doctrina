@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "xvN4jsBrWBTGRsipV7v1wxj+Fml0xBtX5qkxaZ+JmAY=",
+  "Source": "doctrine-api",
+  "BasePath": "_content/doctrine-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
