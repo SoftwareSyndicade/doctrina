@@ -1,25 +1,24 @@
 ﻿<Properties StartupConfiguration="{1D0C7DF8-2ABE-4687-9F90-B7A2F278CCC4}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="doctrine-api/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument=".gitignore">
     <Files>
       <File FileName="doctrine-api/Program.cs" Line="31" Column="40" />
-      <File FileName="doctrine-api/Properties/launchSettings.json" Line="15" Column="36" />
+      <File FileName="doctrine-api/Properties/launchSettings.json" />
+      <File FileName="doctrine-xunit/UnitTest1.cs" Line="1" Column="1" />
+      <File FileName=".gitignore" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="doctrine" expanded="True">
-            <Node name="doctrine-api" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="Properties" expanded="True">
-                <Node name="launchSettings.json" selected="True" />
-              </Node>
-            </Node>
+            <Node name="Solution Items" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.doctrine-api PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
