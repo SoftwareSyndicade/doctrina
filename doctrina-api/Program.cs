@@ -1,5 +1,8 @@
 ﻿using System.Text.Json.Serialization;
+using doctrine_api.Services.SQLServer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.PropertyNamingPolicy = null;
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
+
+builder.Services.AddMemoryCache();
+builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+builder.Services.AddDbContext<DoctrinaStore>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DcortinaStoreConnectionString")));
 
 var app = builder.Build();
 
