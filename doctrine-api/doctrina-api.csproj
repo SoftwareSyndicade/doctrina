@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>doctrine_api</RootNamespace>
+    <AssemblyName>doctrine-api</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,11 +15,5 @@
 
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.SpaServices.Extensions" />
-    <None Remove="Controllers\" />
-    <None Remove="Controllers\v1\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Controllers\v1\" />
   </ItemGroup>
 </Project>
