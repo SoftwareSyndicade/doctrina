@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
+using doctrine_api.AccountManagement;
 using doctrine_api.Services.SQLServer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -22,6 +26,8 @@ builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implem
 builder.Services.AddDbContext<DoctrinaStore>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DcortinaStoreConnectionString")));
 
+builder.Services.AddScoped<IAccountManager, AccountManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,15 +37,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.UseSpa(spa =>
 {
-    spa.Options.SourcePath = "../doctrine-clientapp";
+    spa.Options.SourcePath = "../doctrina-clientapp";
 
     if (app.Environment.IsDevelopment())
     {

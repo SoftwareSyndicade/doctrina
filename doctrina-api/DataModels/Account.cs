@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace doctrine_api.DataModels
@@ -7,14 +8,31 @@ namespace doctrine_api.DataModels
     public class Account
     {
         [Key]
-        public int ID { get; set; }
+        public string ID { get; set; }
 
-        [NotNull]
+        [Required]
+        [MinLength(6)]
+        [MaxLength(15)]
+        public string USERNAME { get; set; }
+
+        [Required]
+        [MinLength(8)]
+        [MaxLength(25)]
+        [NotMapped]
+        public string PASSWORD { get; set; }
+
+        [Required]
+        public string PASSWORD_HASH { get; set; }
+
+        [Required]
+        public byte[] SALT { get; set; }
+
+        [Required]
         public string FIRST_NAME { get; set; }
 
         public string? MIDDEL_NAME { get; set; }
 
-        [NotNull]
+        [Required]
         public string LAST_NAME { get; set; }
 
         [NotNull]
