@@ -25,6 +25,7 @@ namespace doctrine_api.AccountManagement
             {
                 saveStatus.STATUS = false;
                 saveStatus.ERRORS.Add("Account for this username already exist.");
+                return saveStatus;
             }
 
             // create ID for account

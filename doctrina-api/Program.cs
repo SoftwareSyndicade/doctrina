@@ -24,7 +24,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddMemoryCache();
 builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
 builder.Services.AddDbContext<DoctrinaStore>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DcortinaStoreConnectionString")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DoctrinaStoreConnectionString")));
 
 builder.Services.AddScoped<IAccountManager, AccountManager>();
 
