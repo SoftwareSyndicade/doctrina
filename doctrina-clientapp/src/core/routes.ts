@@ -1,10 +1,11 @@
+import LoginPage from "../components/LoginPage/LoginPage";
 import IRoute from "./IRoute";
 
 const ROUTES: IRoute[] = [
     {
         path: '/',
         name: "",
-        component: "Home",
+        component: LoginPage,
         exact: true
     }
 ]
