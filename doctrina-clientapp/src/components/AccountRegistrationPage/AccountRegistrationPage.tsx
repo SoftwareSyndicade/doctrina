@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { Component, FC } from 'react';
 import IFormField from '../../core/IFormField';
@@ -78,23 +78,29 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
       return(
         <Box flexDirection="row" flexWrap="wrap" display="flex" justifyContent='center' className={'wrapper'}>
           <Box m={1} className={`${styles.accountRegistrationPage}`} height='fit-content'>
-            <header className={'padding1015'}>
+            <header className={'padding1015'} style={{textAlign:'center'}}>
               <Typography variant="h4">Register account</Typography>
               <Typography variant="subtitle2">Fill out details to register.</Typography>
             </header>
 
-            <div className={'padding1015'}>
-              <TextField
-                name="USERNAME"
-                helperText={this.state.USERNAME.ERROR}
-                label="Username" 
-                variant="outlined" 
-                error = {!this.state.USERNAME.IS_VALID}
-                style={{width:'100%', marginBottom:'1rem'}}
-                onChange={(e) => {                
-                  // this.handleChanges(e)
-                }}
-              />
+            <Box flexDirection="row" flexWrap="wrap" display="flex" >
+              <Box width="50%">
+                <header className={'padding1015'} style={{textAlign:'center'}}>
+                  <Typography variant="h6">Account details</Typography>
+                </header>
+                
+                <div className={'padding1015'}>
+                  <TextField
+                    name="USERNAME"
+                    helperText={this.state.USERNAME.ERROR}
+                    label="Username" 
+                    variant="outlined" 
+                    error = {!this.state.USERNAME.IS_VALID}
+                    style={{width:'100%', marginBottom:'1rem'}}
+                    onChange={(e) => {                
+                      // this.handleChanges(e)
+                    }}
+                  />
 
               <TextField
                 name="PASSWORD"
@@ -122,7 +128,25 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                 }}
               />
 
-              <TextField
+              <FormControl fullWidth style={{marginBottom:'0.75rem'}}>
+                <InputLabel id="ACCOUNT_TYPE_LABLE">Account type</InputLabel>
+
+                <Select labelId='ACCOUNT_TYPE_LABLE' id='ACCOUNT_TYPE' variant="outlined" label="Account type">
+                  <MenuItem value="student">Student</MenuItem>
+                  <MenuItem value="tutor">Tutor</MenuItem>
+                </Select>
+              </FormControl>
+                </div>
+
+              </Box>
+              <Box width="50%">
+                <header className={'padding1015'} style={{textAlign:'center'}}>
+                  <Typography variant="h6">Personal details</Typography>
+                </header>
+                
+
+                <div className={'padding1015'}>
+                <TextField
                 name="FIRST_NAME"
                 helperText={this.state.FIRST_NAME.ERROR}
                 label="First name" 
@@ -182,12 +206,15 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                   // this.handleChanges(e)
                 }}
               />
+                </div>
+              </Box>
 
-              <div style={{textAlign:'right'}}>
-                <Button variant="contained" color="primary"> Log in </Button>            
-              </div>
+            </Box>
 
+            <div style={{textAlign:'right'}}>
+              <Button variant="contained" color="primary"> Register </Button>            
             </div>
+            
           </Box>
         </Box>
       )
