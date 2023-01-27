@@ -129,9 +129,9 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
               />
 
               <FormControl fullWidth style={{marginBottom:'0.75rem'}}>
-                <InputLabel id="ACCOUNT_TYPE_LABLE">Account type</InputLabel>
+                <InputLabel id="ACCOUNT_TYPE_LABEL">Account type</InputLabel>
 
-                <Select labelId='ACCOUNT_TYPE_LABLE' id='ACCOUNT_TYPE' variant="outlined" label="Account type">
+                <Select labelId='ACCOUNT_TYPE_LABEL' id='ACCOUNT_TYPE' variant="outlined" label="Account type">
                   <MenuItem value="student">Student</MenuItem>
                   <MenuItem value="tutor">Tutor</MenuItem>
                 </Select>
@@ -214,7 +214,9 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
             <div style={{textAlign:'right'}}>
               <Button variant="contained" color="primary"> Register </Button>            
             </div>
-            
+            <div style={{textAlign:'right', marginTop:'0.25rem'}}>
+              <Button color="primary" href='/'> Already got account? Sign in. </Button>            
+            </div>
           </Box>
         </Box>
       )
