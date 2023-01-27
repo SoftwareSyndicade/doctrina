@@ -1,12 +1,19 @@
-import React, { FC } from 'react';
+import React, { Component, FC } from 'react';
 import styles from './AccountRegistrationPage.module.scss';
 
-interface AccountRegistrationPageProps {}
+class AccountRegistrationPage extends Component{
 
-const AccountRegistrationPage: FC<AccountRegistrationPageProps> = () => (
-  <div className={styles.AccountRegistrationPage}>
-    AccountRegistrationPage Component
-  </div>
-);
+  constructor(props: any){
+    super(props)
+  }
 
-export default AccountRegistrationPage;
+  render(): React.ReactNode {
+      return(
+        <div>
+          test
+        </div>
+      )
+  }
+}
+
+export default AccountRegistrationPage
