@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using doctrine_api.AccountManagement;
+using doctrine_api.Auth;
 using doctrine_api.Services.SQLServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<DoctrinaStore>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DoctrinaStoreConnectionString")));
 
 builder.Services.AddScoped<IAccountManager, AccountManager>();
+builder.Services.AddScoped<IAuthManager, AuthManager>();
 
 var app = builder.Build();
 

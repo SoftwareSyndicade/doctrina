@@ -72,7 +72,7 @@ class LoginPage extends Component<{}, ILoginPageState>{
                 error = {!this.state.PASSWORD.IS_VALID}                
                 label="Password" 
                 variant="outlined" 
-                style={{width:'100%'}}
+                style={{width:'100%', marginBottom:'1rem'}}
                 onChange={(e) => {
                   this.handleChanges(e)
                 }}
@@ -87,16 +87,29 @@ class LoginPage extends Component<{}, ILoginPageState>{
       )
   }
 
-  signIn(){
-    // validate states before submitting
-    // if(this.validateFrom()){
-    //   fetch("/v1/auth/sign-in", {
-    //     method: 'POST',
-    //     body: JSON.stringify(""),
-        
-        
-    //   })
-    // }
+  async signIn(){
+
+    if(this.state.PASSWORD.IS_VALID && this.state.PASSWORD.IS_VALID){
+      let response = await fetch("/v1/auth/sign-in", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "USERNAME": this.state.USERNAME.VALUE,
+          "PASSWORD": this.state.PASSWORD.VALUE
+        })
+      })
+
+      response.json().then((res) => {
+        if(!res.IS_VALIDATED){
+          this.setState({
+            ... this.state,
+            ERRORS: res.ERRORS
+          })
+        }
+      })
+    }
     
   }
 
@@ -118,6 +131,7 @@ class LoginPage extends Component<{}, ILoginPageState>{
         else {
           fieldState.IS_VALID = true
           fieldState.ERROR = ""
+          fieldState.VALUE = field.value
         }
 
         this.setState({
@@ -142,6 +156,7 @@ class LoginPage extends Component<{}, ILoginPageState>{
         else {
           fieldState.IS_VALID = true
           fieldState.ERROR = ""
+          fieldState.VALUE = field.value
         }
 
         this.setState({

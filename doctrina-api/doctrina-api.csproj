@@ -41,6 +41,7 @@
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Mappings\" />
     <None Remove="Utilities\" />
+    <None Remove="ResponseModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -53,5 +54,6 @@
     <Folder Include="RequestModels\" />
     <Folder Include="Mappings\" />
     <Folder Include="Utilities\" />
+    <Folder Include="ResponseModels\" />
   </ItemGroup>
 </Project>
