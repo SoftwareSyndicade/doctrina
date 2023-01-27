@@ -6,6 +6,7 @@ import styles from './LoginPage.module.scss';
 interface IFormField{
   VALUE: string
   IS_VALID: boolean
+  IS_TOUCHED: boolean
   ERROR?: string
 }
 
@@ -25,12 +26,14 @@ class LoginPage extends Component<{}, ILoginPageState>{
       USERNAME: {
         VALUE: "",
         IS_VALID: true,
+        IS_TOUCHED: false,
         ERROR: ""
         
       },
       PASSWORD: {
         VALUE: "",
         IS_VALID: true,
+        IS_TOUCHED: false,
         ERROR: ""
       },
       ERRORS: []
@@ -89,7 +92,7 @@ class LoginPage extends Component<{}, ILoginPageState>{
 
   async signIn(){
 
-    if(this.state.PASSWORD.IS_VALID && this.state.PASSWORD.IS_VALID){
+    if(this.state.PASSWORD.IS_TOUCHED && this.state.PASSWORD.IS_TOUCHED){
       let response = await fetch("/v1/auth/sign-in", {
         method: 'POST',
         headers: {
