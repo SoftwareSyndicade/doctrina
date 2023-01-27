@@ -93,7 +93,7 @@ class LoginPage extends Component<{}, ILoginPageState>{
               <Typography variant="subtitle2">Click on register to continue.</Typography>
 
               <div style={{textAlign:'right', marginTop:'0.75rem'}}>
-                <Button variant="contained" color="primary"> Register </Button>            
+                <Button variant="contained" color="primary" href='/register'> Register </Button>            
               </div>
             </div>
           </Box>
