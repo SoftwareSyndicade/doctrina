@@ -85,6 +85,17 @@ class LoginPage extends Component<{}, ILoginPageState>{
                 <Button variant="contained" color="primary" onClick={() => this.signIn()}> Log in </Button>            
               </div>
             </div>
+
+            <hr/>
+
+            <div className={'padding1015'}>
+              <Typography variant="h4">Not yet registered?</Typography>
+              <Typography variant="subtitle2">Click on register to continue.</Typography>
+
+              <div style={{textAlign:'right', marginTop:'0.75rem'}}>
+                <Button variant="contained" color="primary"> Log in </Button>            
+              </div>
+            </div>
           </Box>
         </Box>
       )
