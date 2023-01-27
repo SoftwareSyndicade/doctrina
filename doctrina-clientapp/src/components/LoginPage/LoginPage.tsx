@@ -1,15 +1,8 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { Component, FC } from 'react';
+import IFormField from '../../core/IFormField';
 import styles from './LoginPage.module.scss';
-
-interface IFormField{
-  VALUE: string
-  IS_VALID: boolean
-  IS_TOUCHED: boolean
-  ERROR?: string
-}
-
 interface ILoginPageState{
   USERNAME: IFormField,
   PASSWORD: IFormField
