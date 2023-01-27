@@ -14,23 +14,6 @@ class LoginPage extends Component<{}, ILoginPageState>{
 
   constructor(props: any) {
     super(props)
-
-    this.state = {
-      USERNAME: {
-        VALUE: "",
-        IS_VALID: true,
-        IS_TOUCHED: false,
-        ERROR: ""
-        
-      },
-      PASSWORD: {
-        VALUE: "",
-        IS_VALID: true,
-        IS_TOUCHED: false,
-        ERROR: ""
-      },
-      ERRORS: []
-    }
   }
 
   render(): React.ReactNode {
