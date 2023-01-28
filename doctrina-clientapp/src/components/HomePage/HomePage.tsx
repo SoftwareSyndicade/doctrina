@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { FC } from 'react';
 import styles from './HomePage.module.scss';
 
@@ -11,7 +12,7 @@ class HomePage extends React.Component{
   render(): React.ReactNode {
       return(
         <div>
-          Home page
+          <Button color='primary' variant='contained' href='/assistance-request'>Request assistance</Button>
         </div>
       )
   }

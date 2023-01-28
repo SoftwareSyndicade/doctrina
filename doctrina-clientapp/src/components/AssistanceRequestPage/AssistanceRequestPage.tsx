@@ -3,10 +3,19 @@ import styles from './AssistanceRequestPage.module.scss';
 
 interface AssistanceRequestPageProps {}
 
-const AssistanceRequestPage: FC<AssistanceRequestPageProps> = () => (
-  <div className={styles.AssistanceRequestPage}>
-    AssistanceRequestPage Component
-  </div>
-);
+class AssistanceRequestPage extends React.Component{
+
+  constructor(props: any){
+    super(props)
+  }
+
+  render(): React.ReactNode {
+      return(
+        <div>
+          Assistance request
+        </div>
+      )
+  }
+}
 
 export default AssistanceRequestPage;
