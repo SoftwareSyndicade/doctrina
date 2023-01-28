@@ -17,7 +17,7 @@ class AssistanceRequestPage extends React.Component{
           <Box m={1} className={`${styles.assistanceRequestPage}`} height='fit-content'>
             <header className={'padding1015'} style={{textAlign:'center'}}>
               <Typography variant="h4">Assistance request</Typography>
-              <Typography variant="subtitle2">Fill out details to register.</Typography>
+              <Typography variant="subtitle2">Fill out assistance request details.</Typography>
             </header>
 
             <div className={'padding1015'}>
