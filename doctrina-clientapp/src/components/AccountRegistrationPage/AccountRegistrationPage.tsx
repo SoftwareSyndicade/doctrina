@@ -6,7 +6,15 @@ import IFormField, { IForm, validateFromField } from '../../core/IFormField';
 import styles from './AccountRegistrationPage.module.scss';
 
 interface IAccountRegistrationState{
-  FORM: IForm
+  USERNAME: string
+  PASSWORD: string
+  CONFIRM_PASSWORD: string,
+  ACCOUNT_TYPE: string,
+  FIRST_NAME: string,
+  MIDDLE_NAME: string,
+  LAST_NAME: string,
+  PHONE_NUMBER: string,
+  EMAIL: string
 }
 
 class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
@@ -14,105 +22,17 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
   constructor(props: any){
     super(props)
 
-    this.state = {
-      FORM: {
-        FORM_FIELDS: [
-          {
-             NAME: "USERNAME",
-             ID: "USERNAME",
-             LABEL: "Username",
-             FORM_FIELD: TextField,
-             TYPE: "text",
-             IS_VALID: true,
-             IS_TOUCHED: false,
-             VALUE: "",           
-             VALIDATIONS: [{
-              REGEX: "[A-Z]",
-              ERROR_MESSAGE: "Username is valid."
-              
-             }]  
-          },
-
-          {
-            NAME: "PASSWORD",
-            ID: "PASSWORD",
-            LABEL: "Password",
-            FORM_FIELD: TextField,
-            TYPE: "password",
-            IS_VALID: true,
-            IS_TOUCHED: false,
-            VALUE: "",           
-            VALIDATIONS: [{
-             REGEX: "[A-Z]",
-             ERROR_MESSAGE: "Password is valid."
-             
-            }]  
-         }
-        ]
-      }
-    }
-
-    // this.state = {
-    //   USERNAME: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: "",        
-    //     VALIDATIONS: [{
-    //       REGEX: "[A-Z]",
-    //       ERROR_MESSAGE: "Username is mandatory."
-    //     }]
-    //   },
-    //   PASSWORD: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   },
-    //   CONFIRM_PASSWORD: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   },
-    //   ACCOUNT_TYPE: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""
-    //   },
-    //   FIRST_NAME: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   },
-    //   MIDDLE_NAME: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   },
-    //   LAST_NAME: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   },
-    //   PHONE_NUMBER: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   },
-    //   EMAIL: {
-    //     VALUE: "",
-    //     IS_VALID: true,
-    //     IS_TOUCHED: false,
-    //     ERROR: ""        
-    //   }
-
-    // }
+    this.state = ({
+      USERNAME: "",
+      PASSWORD: "",
+      CONFIRM_PASSWORD: "",
+      ACCOUNT_TYPE: "",
+      FIRST_NAME: "",
+      MIDDLE_NAME: "",
+      LAST_NAME: "",
+      PHONE_NUMBER: "",
+      EMAIL: ""
+    })    
   }
 
   render(): React.ReactNode {
@@ -132,20 +52,23 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                 
                 <div className={'padding1015'}>
 
-                  {this.state.FORM.FORM_FIELDS.map(field => {
-                    return(
-                      <field.FORM_FIELD 
-                        name={field.NAME} 
-                        id={field.ID} 
-                        label={field.LABEL} 
-                        type={field.TYPE}
-                        style={{width:'100%', marginBottom: '0.75rem'}} 
-                        error = {!field.IS_VALID} 
-                        helperText={field.ERROR} 
-                        onChange={(e: ChangeEvent) => this.handleChanges(e)}>
-                      </field.FORM_FIELD>
-                    )
-                  })}
+                  <TextField name='USERNAME' id='USERNAME' value={this.state.USERNAME} label="Username" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <TextField name='PASSWORD' id='PASSWORD' value={this.state.PASSWORD} label="Password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <TextField name='CONFIRM_PASSWORD' id='CONFIRM_PASSWORD' value={this.state.CONFIRM_PASSWORD} label="Confirm password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <FormControl fullWidth>
+                    <InputLabel id='ACCOUNT_TYPE_LABLE'>Account type</InputLabel>
+                    <Select labelId='ACCOUNT_TYPE_LABLE' id='ACCOUNT_TYPE' name='ACCOUNT_TYPE' value={this.state.ACCOUNT_TYPE} onChange={(e) => {this.handleChanges(e)}} label="Account type">
+                      <MenuItem value="none">None</MenuItem>
+                      <MenuItem value="student">Student</MenuItem>
+                      <MenuItem value="tutor">Tutor</MenuItem> 
+                    </Select>
+                  </FormControl>
                   
                 </div>
 
@@ -155,12 +78,29 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                   <Typography variant="h6">Personal details</Typography>
                 </header>
                 
+                <div className={'padding1015'}>
+                  <TextField name='FIRST_NAME' id='FIRST_NAMER' value={this.state.FIRST_NAME} label="First name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <TextField name='MIDDLE_NAME' id='MIDDLE_NAMER' value={this.state.MIDDLE_NAME} label="Middle name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <TextField name='LAST_NAME' id='LAST_NAME' value={this.state.LAST_NAME} label="Last name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <TextField name='PHONE_NUMBER' id='PHONE_NUMBER' value={this.state.PHONE_NUMBER} label="Phone number" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+
+                  <TextField name='EMAIL' id='EMAIL' value={this.state.EMAIL} label="E-Mail" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  </TextField>
+                  
+                </div>
               </Box>
 
             </Box>
 
             <div style={{textAlign:'right'}}>
-              <Button variant="contained" color="primary" onClick={() => {this.validateForm()}}> Register </Button>            
+              <Button variant="contained" color="primary"> Register </Button>            
             </div>
             <div style={{textAlign:'right', marginTop:'0.25rem'}}>
               <Button color="primary" href='/'> Already got account? Sign in. </Button>            
@@ -171,41 +111,12 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
   }
 
   handleChanges(e: React.ChangeEvent | SelectChangeEvent){
-
     let field = e.target as HTMLInputElement
 
-    let fieldState = this.state.FORM.FORM_FIELDS.find((field) => {
-      return field.NAME === field.NAME ? field : undefined
+    this.setState({
+      ... this.state,
+      [field.name]: field.value
     })
-
-    if(fieldState !== undefined){
-        fieldState.VALUE = field.value
-        validateFromField(fieldState)
-
-        this.setState({
-          ... this.state,
-          [field.name]: fieldState
-        })
-    }
-    
-  }
-
-  validateForm(){
-
-    this.state.FORM.FORM_FIELDS.map((field, index) => {
-      debugger
-      validateFromField(field)
-
-      this.setState({
-        ... this.setState,
-        FORM: {
-          FORM_FIELDS:[            
-            ... this.state.FORM.FORM_FIELDS          
-          ]
-        }
-      })
-    })
-
   }
   
 }
