@@ -80,15 +80,19 @@ class LoginPage extends Component<{}, ILoginPageState>{
     })
 
     response.json().then(res => {
-
-      if(!res.IS_VALIDATED){        
-        this.setState({
-          ... this.state,
-          ERRORS: res.ERRORS
-        })
-      }
-
-      
+      switch(res.status){
+        case 400:{          
+          break
+        }
+          
+        case 401:{
+          this.setState({
+            ... this.state,
+            ERRORS: res.ERRORS
+          })
+          break
+        }
+      }            
     })    
 
       
