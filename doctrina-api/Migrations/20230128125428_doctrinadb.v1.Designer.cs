@@ -11,8 +11,8 @@ using doctrine_api.Services.SQLServer;
 namespace doctrineapi.Migrations
 {
     [DbContext(typeof(DoctrinaStore))]
-    [Migration("20230125115807_doctrina-api.v1")]
-    partial class doctrinaapiv1
+    [Migration("20230128125428_doctrinadb.v1")]
+    partial class doctrinadbv1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,8 +51,9 @@ namespace doctrineapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PHONE_NUMBER")
-                        .HasColumnType("int");
+                    b.Property<string>("PHONE_NUMBER")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("SALT")
                         .IsRequired()

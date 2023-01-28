@@ -48,8 +48,9 @@ namespace doctrineapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PHONE_NUMBER")
-                        .HasColumnType("int");
+                    b.Property<string>("PHONE_NUMBER")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("SALT")
                         .IsRequired()

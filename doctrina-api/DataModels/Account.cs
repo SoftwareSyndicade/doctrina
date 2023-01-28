@@ -35,11 +35,11 @@ namespace doctrine_api.DataModels
         [Required]
         public string LAST_NAME { get; set; }
 
-        [NotNull]
+        [Required]
         [DataType(DataType.PhoneNumber)]
-        public int PHONE_NUMBER { get; set; }
+        public string PHONE_NUMBER { get; set; }
 
-        [NotNull]
+        [Required]
         [DataType(DataType.EmailAddress)]
         public String EMAIL { get; set; }
 

@@ -25,7 +25,6 @@ namespace doctrine_api.RequestModels
         public string PASSWORD { get; set; }
 
         [Required(ErrorMessage = "Phone number is mandatory field.")]
-        [DataType(DataType.PhoneNumber)]
         public string PHONE_NUMBER { get; set; }
 
         [Required(ErrorMessage = "E-mail is mandatory field.")]

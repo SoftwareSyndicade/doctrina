@@ -5,7 +5,7 @@
 namespace doctrineapi.Migrations
 {
     /// <inheritdoc />
-    public partial class doctrinaapiv1 : Migration
+    public partial class doctrinadbv1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace doctrineapi.Migrations
                     FIRSTNAME = table.Column<string>(name: "FIRST_NAME", type: "nvarchar(max)", nullable: false),
                     MIDDELNAME = table.Column<string>(name: "MIDDEL_NAME", type: "nvarchar(max)", nullable: true),
                     LASTNAME = table.Column<string>(name: "LAST_NAME", type: "nvarchar(max)", nullable: false),
-                    PHONENUMBER = table.Column<int>(name: "PHONE_NUMBER", type: "int", nullable: false),
+                    PHONENUMBER = table.Column<string>(name: "PHONE_NUMBER", type: "nvarchar(max)", nullable: false),
                     EMAIL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IMAGE = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },

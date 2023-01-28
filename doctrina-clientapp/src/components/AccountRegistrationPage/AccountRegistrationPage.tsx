@@ -6,15 +6,19 @@ import IFormField, { IForm, validateFromField } from '../../core/IFormField';
 import styles from './AccountRegistrationPage.module.scss';
 
 interface IAccountRegistrationState{
-  USERNAME: string
-  PASSWORD: string
-  CONFIRM_PASSWORD: string,
-  ACCOUNT_TYPE: string,
-  FIRST_NAME: string,
-  MIDDLE_NAME: string,
-  LAST_NAME: string,
-  PHONE_NUMBER: string,
-  EMAIL: string
+  FORM: {
+    USERNAME: string
+    PASSWORD: string
+    CONFIRM_PASSWORD: string,
+    ACCOUNT_TYPE: string,
+    FIRST_NAME: string,
+    MIDDLE_NAME: string,
+    LAST_NAME: string,
+    PHONE_NUMBER: string,
+    EMAIL: string
+  },
+  ERRORS: string[]
+  
 }
 
 class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
@@ -23,15 +27,18 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
     super(props)
 
     this.state = ({
-      USERNAME: "",
-      PASSWORD: "",
-      CONFIRM_PASSWORD: "",
-      ACCOUNT_TYPE: "",
-      FIRST_NAME: "",
-      MIDDLE_NAME: "",
-      LAST_NAME: "",
-      PHONE_NUMBER: "",
-      EMAIL: ""
+      FORM: {
+        USERNAME: "",
+        PASSWORD: "",
+        CONFIRM_PASSWORD: "",
+        ACCOUNT_TYPE: "",
+        FIRST_NAME: "",
+        MIDDLE_NAME: "",
+        LAST_NAME: "",
+        PHONE_NUMBER: "",
+        EMAIL: ""
+      },
+      ERRORS: []
     })    
   }
 
@@ -44,6 +51,10 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
               <Typography variant="subtitle2">Fill out details to register.</Typography>
             </header>
 
+            <div style={{textAlign: 'center'}} className={'padding1015'}>
+              {this.state.ERRORS}
+            </div>
+
             <Box flexDirection="row" flexWrap="wrap" display="flex" >
               <Box width="50%">
                 <header className={'padding1015'} style={{textAlign:'center'}}>
@@ -52,18 +63,18 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                 
                 <div className={'padding1015'}>
 
-                  <TextField name='USERNAME' id='USERNAME' value={this.state.USERNAME} label="Username" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='USERNAME' id='USERNAME' value={this.state.FORM.USERNAME} label="Username" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
-                  <TextField name='PASSWORD' id='PASSWORD' value={this.state.PASSWORD} label="Password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='PASSWORD' id='PASSWORD' value={this.state.FORM.PASSWORD} label="Password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
-                  <TextField name='CONFIRM_PASSWORD' id='CONFIRM_PASSWORD' value={this.state.CONFIRM_PASSWORD} label="Confirm password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='CONFIRM_PASSWORD' id='CONFIRM_PASSWORD' value={this.state.FORM.CONFIRM_PASSWORD} label="Confirm password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
                   <FormControl fullWidth>
                     <InputLabel id='ACCOUNT_TYPE_LABLE'>Account type</InputLabel>
-                    <Select labelId='ACCOUNT_TYPE_LABLE' id='ACCOUNT_TYPE' name='ACCOUNT_TYPE' value={this.state.ACCOUNT_TYPE} onChange={(e) => {this.handleChanges(e)}} label="Account type">
+                    <Select labelId='ACCOUNT_TYPE_LABLE' id='ACCOUNT_TYPE' name='ACCOUNT_TYPE' value={this.state.FORM.ACCOUNT_TYPE} onChange={(e) => {this.handleChanges(e)}} label="Account type">
                       <MenuItem value="none">None</MenuItem>
                       <MenuItem value="student">Student</MenuItem>
                       <MenuItem value="tutor">Tutor</MenuItem> 
@@ -79,19 +90,19 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                 </header>
                 
                 <div className={'padding1015'}>
-                  <TextField name='FIRST_NAME' id='FIRST_NAMER' value={this.state.FIRST_NAME} label="First name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='FIRST_NAME' id='FIRST_NAMER' value={this.state.FORM.FIRST_NAME} label="First name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
-                  <TextField name='MIDDLE_NAME' id='MIDDLE_NAMER' value={this.state.MIDDLE_NAME} label="Middle name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='MIDDLE_NAME' id='MIDDLE_NAMER' value={this.state.FORM.MIDDLE_NAME} label="Middle name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
-                  <TextField name='LAST_NAME' id='LAST_NAME' value={this.state.LAST_NAME} label="Last name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='LAST_NAME' id='LAST_NAME' value={this.state.FORM.LAST_NAME} label="Last name" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
-                  <TextField name='PHONE_NUMBER' id='PHONE_NUMBER' value={this.state.PHONE_NUMBER} label="Phone number" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='PHONE_NUMBER' id='PHONE_NUMBER' value={this.state.FORM.PHONE_NUMBER} label="Phone number" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
 
-                  <TextField name='EMAIL' id='EMAIL' value={this.state.EMAIL} label="E-Mail" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+                  <TextField name='EMAIL' id='EMAIL' value={this.state.FORM.EMAIL} label="E-Mail" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
                   </TextField>
                   
                 </div>
@@ -100,7 +111,7 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
             </Box>
 
             <div style={{textAlign:'right'}}>
-              <Button variant="contained" color="primary"> Register </Button>            
+              <Button variant="contained" color="primary" onClick={() => this.registerAccount()}> Register </Button>            
             </div>
             <div style={{textAlign:'right', marginTop:'0.25rem'}}>
               <Button color="primary" href='/'> Already got account? Sign in. </Button>            
@@ -115,7 +126,36 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
 
     this.setState({
       ... this.state,
-      [field.name]: field.value
+      FORM: {
+        ... this.state.FORM,
+        [field.name]: field.value
+      }
+      
+    })
+  }
+
+  async registerAccount(){
+
+    fetch('/v1/account/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify(this.state.FORM)
+    }).then(res => {
+      switch(res.status){
+        case 201:
+          this.setState({
+            ... this.state,
+            ERRORS: [
+              ... this.state.ERRORS,
+              "Account created successfully."
+            ]
+          })
+          break
+        case 400:
+          break
+      }
     })
   }
   
