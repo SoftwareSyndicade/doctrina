@@ -11,6 +11,7 @@ namespace doctrine_api.Services.SQLServer
         protected override void OnModelCreating(ModelBuilder modelBuilder) { }
 
         public DbSet<Account> ACCOUNT { get; set; }
+        public DbSet<Request> ASSISTANCE_REQUEST { get; set; }
     }
 }
 
