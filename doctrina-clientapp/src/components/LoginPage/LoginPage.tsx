@@ -4,8 +4,10 @@ import React, { Component, FC } from 'react';
 import IFormField from '../../core/IFormField';
 import styles from './LoginPage.module.scss';
 interface ILoginPageState{
-  USERNAME: "",
-  PASSWORD: ""
+  FORM: {
+    USERNAME: "",
+    PASSWORD: ""
+  }
   ERRORS: string[]
 }
 
@@ -16,8 +18,10 @@ class LoginPage extends Component<{}, ILoginPageState>{
     super(props)
 
     this.state =({
-      USERNAME: "",
-      PASSWORD: "",
+      FORM: {
+        USERNAME: "",
+        PASSWORD: "",
+      },      
       ERRORS: []
     })
   }
@@ -39,10 +43,10 @@ class LoginPage extends Component<{}, ILoginPageState>{
 
             <div className={'padding1015'}>
               
-              <TextField name='USERNAME' id='USERNAME' value={this.state.USERNAME} label="Username" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+              <TextField name='USERNAME' id='USERNAME' value={this.state.FORM.USERNAME} label="Username" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
               </TextField>
 
-              <TextField name='PASSWORD' id='PASSWORD' value={this.state.PASSWORD} label="Password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
+              <TextField name='PASSWORD' id='PASSWORD' value={this.state.FORM.PASSWORD} label="Password" type="password" fullWidth onChange={(e) => {this.handleChanges(e)}} style={{marginBottom:'0.75rem'}}>
               </TextField>
 
               <div style={{textAlign:'right'}}>
@@ -67,27 +71,27 @@ class LoginPage extends Component<{}, ILoginPageState>{
 
   async signIn(){
 
-    // if(this.state.PASSWORD.IS_TOUCHED && this.state.PASSWORD.IS_TOUCHED){
-    //   let response = await fetch("/v1/auth/sign-in", {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //       "USERNAME": this.state.USERNAME.VALUE,
-    //       "PASSWORD": this.state.PASSWORD.VALUE
-    //     })
-    //   })
+    let response = await fetch("/v1/auth/sign-in", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify(this.state.FORM)
+    })
 
-    //   response.json().then((res) => {
-    //     if(!res.IS_VALIDATED){
-    //       this.setState({
-    //         ... this.state,
-    //         ERRORS: res.ERRORS
-    //       })
-    //     }
-    //   })
-    // }
+    response.json().then(res => {
+
+      if(!res.IS_VALIDATED){        
+        this.setState({
+          ... this.state,
+          ERRORS: res.ERRORS
+        })
+      }
+
+      
+    })    
+
+      
     
   }
 
@@ -96,7 +100,11 @@ class LoginPage extends Component<{}, ILoginPageState>{
 
     this.setState({
       ... this.state,
-      [field.name]: field.value
+      FORM: {
+        ... this.state.FORM,
+        [field.name]: field.value
+      }
+      
     })
   }
 }
