@@ -31,6 +31,12 @@ namespace doctrine_api.DataModels
 
         [Required]
         public bool PAID { get; set; }
+
+        [Required]
+        public DateTime CREATED_ON { get; set; }
+
+        [Required]
+        public string CREATED_BY { get; set; }
     }
 }
 
