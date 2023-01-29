@@ -49,6 +49,8 @@
     <None Remove="Management\Assistance\" />
     <None Remove="Management\Assistance\Request\" />
     <None Remove="Management\Assistance\Proposals\" />
+    <None Remove="Management\Student\" />
+    <None Remove="Management\Tutor\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -69,5 +71,7 @@
     <Folder Include="Management\Assistance\" />
     <Folder Include="Management\Assistance\Request\" />
     <Folder Include="Management\Assistance\Proposals\" />
+    <Folder Include="Management\Student\" />
+    <Folder Include="Management\Tutor\" />
   </ItemGroup>
 </Project>
