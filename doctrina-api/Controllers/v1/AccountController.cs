@@ -27,7 +27,7 @@ namespace doctrine_api.Controllers.v1
         }
 
 
-        [HttpPost(AccountActions.REGISTER)]
+        [HttpPost(CRUDActions.REGISTER)]
         public IActionResult Register(AccountDetails accountDetails)
         {
             Account account = _mapper.Map<Account>(accountDetails);
