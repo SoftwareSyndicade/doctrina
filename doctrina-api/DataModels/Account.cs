@@ -44,6 +44,9 @@ namespace doctrine_api.DataModels
         public String EMAIL { get; set; }
 
         public byte[]? IMAGE { get; set; }
+
+        [Required]
+        public DateTime CREATED_ON { get; set; }
     }
 }
 

@@ -37,6 +37,8 @@ namespace doctrine_api.AccountManagement
             account.PASSWORD_HASH = userSecret.SECRET_HASH;
             account.SALT = userSecret.SALT;
 
+            account.CREATED_ON = DateTime.UtcNow;
+
             _store.ACCOUNT.Add(account);
             int entryCount = _store.SaveChanges();
 
