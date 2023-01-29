@@ -46,6 +46,9 @@
     <None Remove="Management\Account\" />
     <None Remove="Management\Auth\Models\" />
     <None Remove="Management\Account\Models\" />
+    <None Remove="Management\Assistance\" />
+    <None Remove="Management\Assistance\Request\" />
+    <None Remove="Management\Assistance\Proposals\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -63,5 +66,8 @@
     <Folder Include="Management\Account\" />
     <Folder Include="Management\Auth\Models\" />
     <Folder Include="Management\Account\Models\" />
+    <Folder Include="Management\Assistance\" />
+    <Folder Include="Management\Assistance\Request\" />
+    <Folder Include="Management\Assistance\Proposals\" />
   </ItemGroup>
 </Project>
