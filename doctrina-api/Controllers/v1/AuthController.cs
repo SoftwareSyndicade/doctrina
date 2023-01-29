@@ -43,6 +43,8 @@ namespace doctrine_api.Controllers.v1
                 return Unauthorized(response);
             }
 
+            response.IS_VALIDATED = true;
+
             return Ok(response);
         }
     }
