@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React, { Component, FC } from 'react';
 import IFormField from '../../core/IFormField';
 import styles from './LoginPage.module.scss';
+import { useNavigate } from 'react-router-dom'
 interface ILoginPageState{
   FORM: {
     USERNAME: "",
@@ -71,29 +72,28 @@ class LoginPage extends Component<{}, ILoginPageState>{
 
   async signIn(){
 
-    let response = await fetch("/v1/auth/sign-in", {
+    fetch("/v1/auth/sign-in", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       }, 
       body: JSON.stringify(this.state.FORM)
-    })
-
-    response.json().then(res => {
+    }).then(res => {
       switch(res.status){
-        case 400:{          
+        case 200:          
           break
-        }
-          
-        case 401:{
-          this.setState({
-            ... this.state,
-            ERRORS: res.ERRORS
+        case 400:
+          break
+        case 401:
+          res.json().then((data) => {
+            this.setState({
+              ... this.state,
+              ERRORS: data.ERRORS
+            })
           })
-          break
-        }
-      }            
-    })    
+          break        
+      }
+    })
 
       
     
