@@ -7,7 +7,7 @@ using doctrine_api.Constants;
 using Microsoft.AspNetCore.Mvc;
 using doctrine_api.RequestModels;
 using doctrine_api.ResponseModels;
-using doctrine_api.Auth;
+using doctrine_api.Management.Auth;
 
 namespace doctrine_api.Controllers.v1
 {
@@ -35,7 +35,7 @@ namespace doctrine_api.Controllers.v1
         {
             SignInResponse response = new SignInResponse();
 
-            Auth.SignInResult result = _authManager.ValidateUser(signInRequest);
+            Management.Auth.Models.SignInResult result = _authManager.ValidateUser(signInRequest);
             if (!result.IS_VALIDATED)
             {
                 response.IS_VALIDATED = false;

@@ -2,8 +2,9 @@
 using doctrine_api.Services.SQLServer;
 using doctrine_api.RequestModels;
 using doctrine_api.Utilities;
+using doctrine_api.Management.Auth.Models;
 
-namespace doctrine_api.Auth
+namespace doctrine_api.Management.Auth
 {
     public class AuthManager : IAuthManager
     {

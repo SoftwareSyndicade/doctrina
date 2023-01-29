@@ -1,5 +1,5 @@
 ﻿using System;
-namespace doctrine_api.Auth
+namespace doctrine_api.Management.Auth.Models
 {
     public class SignInResult
     {

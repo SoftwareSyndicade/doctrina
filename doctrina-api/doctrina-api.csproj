@@ -36,12 +36,16 @@
     <None Remove="DataModels\" />
     <None Remove="Controllers\v1\" />
     <None Remove="Constants\" />
-    <None Remove="Auth\" />
     <None Remove="RequestModels\" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Mappings\" />
     <None Remove="Utilities\" />
     <None Remove="ResponseModels\" />
+    <None Remove="Management\" />
+    <None Remove="Management\Auth\" />
+    <None Remove="Management\Account\" />
+    <None Remove="Management\Auth\Models\" />
+    <None Remove="Management\Account\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -50,10 +54,14 @@
     <Folder Include="DataModels\" />
     <Folder Include="Controllers\v1\" />
     <Folder Include="Constants\" />
-    <Folder Include="Auth\" />
     <Folder Include="RequestModels\" />
     <Folder Include="Mappings\" />
     <Folder Include="Utilities\" />
     <Folder Include="ResponseModels\" />
+    <Folder Include="Management\" />
+    <Folder Include="Management\Auth\" />
+    <Folder Include="Management\Account\" />
+    <Folder Include="Management\Auth\Models\" />
+    <Folder Include="Management\Account\Models\" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
 ﻿using System;
-using doctrine_api.DataModels;
+using doctrine_api.Management.Account.Models;
 using doctrine_api.Services.SQLServer;
 using doctrine_api.Utilities;
 
-namespace doctrine_api.AccountManagement
+namespace doctrine_api.Management.Account
 {
     public class AccountManager : IAccountManager
     {
@@ -14,7 +14,7 @@ namespace doctrine_api.AccountManagement
             _store = store;
         }
 
-        public AccountSaveStatus RegisterAccount(Account account)
+        public AccountSaveStatus RegisterAccount(DataModels.Account account)
         {
             AccountSaveStatus saveStatus = new AccountSaveStatus();
 

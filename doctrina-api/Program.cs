@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using doctrine_api.AccountManagement;
-using doctrine_api.Auth;
+using doctrine_api.Management.Account;
+using doctrine_api.Management.Auth;
 using doctrine_api.Services.SQLServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;

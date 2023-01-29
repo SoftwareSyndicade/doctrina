@@ -4,9 +4,10 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
-using doctrine_api.AccountManagement;
 using doctrine_api.Constants;
 using doctrine_api.DataModels;
+using doctrine_api.Management.Account;
+using doctrine_api.Management.Account.Models;
 using doctrine_api.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 

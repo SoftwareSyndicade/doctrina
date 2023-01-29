@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace doctrine_api.AccountManagement
+namespace doctrine_api.Management.Account.Models
 {
     public class AccountSaveStatus
     {
