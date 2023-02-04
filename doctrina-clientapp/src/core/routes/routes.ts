@@ -1,21 +1,25 @@
-import AccountRegistrationPage from '../components/AccountRegistrationPage/AccountRegistrationPage';
-import AssistanceRequestPage from '../components/AssistanceRequestPage/AssistanceRequestPage';
-import HomePage from '../components/HomePage/HomePage';
-import LoginPage from "../components/LoginPage/LoginPage";
+import AccountRegistrationPage from '../../components/AccountRegistrationPage/AccountRegistrationPage';
+import AssistanceRequestPage from '../../components/AssistanceRequestPage/AssistanceRequestPage';
+import HomePage from '../../components/HomePage/HomePage';
+import LoginPage from "../../components/LoginPage/LoginPage";
 import IRoute from "./IRoute";
 
-const ROUTES: IRoute[] = [
+export const OPEN_ROUTES: IRoute[] = [
     {
         path: '/',
         name: "",
         component: LoginPage,
         exact: true
-    },{
+    }, {
         path: '/register',
         name: "",
         component: AccountRegistrationPage,
         exact: true
-    }, {
+    }
+]
+
+export const PROTECTED_ROUTES: IRoute[] = [
+    {
         path: '/home',
         name: "",
         component: HomePage,
@@ -28,5 +32,3 @@ const ROUTES: IRoute[] = [
         exact: true
     }
 ]
-
-export default ROUTES
