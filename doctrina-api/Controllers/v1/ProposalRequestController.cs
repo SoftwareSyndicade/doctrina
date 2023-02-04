@@ -14,13 +14,25 @@ namespace doctrine_api.Controllers.v1
     public class ProposalRequestController : Controller
     {
         [HttpPost(CRUDActions.REGISTER)]
-        public IActionResult RegisterProposal()
+        public IActionResult Register()
         {
             return Unauthorized();
         }
 
         [HttpGet(CRUDActions.FETCH)]
-        public IActionResult FetchProposals()
+        public IActionResult Fetch()
+        {
+            return Unauthorized();
+        }
+
+        [HttpPut(CRUDActions.UPDATE)]
+        public IActionResult Update()
+        {
+            return Unauthorized();
+        }
+
+        [HttpDelete(CRUDActions.DELETE)]
+        public IActionResult Delete()
         {
             return Unauthorized();
         }

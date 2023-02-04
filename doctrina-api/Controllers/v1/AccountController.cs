@@ -45,6 +45,29 @@ namespace doctrine_api.Controllers.v1
             }
 
         }
+
+        [HttpGet(CRUDActions.FETCH)]
+        public IActionResult Fetch(String accountID)
+        {
+            var account = _accountManager.GetAccount(accountID);
+
+            if (account == null)
+                return BadRequest("Account not found.");
+
+            return Ok(account);
+        }
+
+        [HttpPut(CRUDActions.UPDATE)]
+        public IActionResult Update()
+        {
+            return Unauthorized();
+        }
+
+        [HttpDelete(CRUDActions.DELETE)]
+        public IActionResult Delete()
+        {
+            return Unauthorized();
+        }
     }
 }
 

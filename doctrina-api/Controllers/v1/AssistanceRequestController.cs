@@ -14,13 +14,25 @@ namespace doctrine_api.Controllers.v1
     public class AssistanceRequestController : Controller
     {
         [HttpPost(CRUDActions.REGISTER)]
-        public IActionResult RegisterAssistance()
+        public IActionResult Register()
         {
             return Unauthorized();
         }
 
         [HttpGet(CRUDActions.FETCH)]
-        public IActionResult FetchAssistances()
+        public IActionResult Fetch()
+        {
+            return Unauthorized();
+        }
+
+        [HttpPut(CRUDActions.UPDATE)]
+        public IActionResult Update()
+        {
+            return Unauthorized();
+        }
+
+        [HttpDelete(CRUDActions.DELETE)]
+        public IActionResult Delete()
         {
             return Unauthorized();
         }
