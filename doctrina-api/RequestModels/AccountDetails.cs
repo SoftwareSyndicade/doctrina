@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+using doctrine_api.Constants;
 
 namespace doctrine_api.RequestModels
 {
@@ -30,6 +32,9 @@ namespace doctrine_api.RequestModels
         [Required(ErrorMessage = "E-mail is mandatory field.")]
         [DataType(DataType.EmailAddress)]
         public string EMAIL { get; set; }
+
+        [Required(ErrorMessage = "Account type required")]
+        public AccountTypes ACCOUNT_TYPE { get; set; }
     }
 }
 
