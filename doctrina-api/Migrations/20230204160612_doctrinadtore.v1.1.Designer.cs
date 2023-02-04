@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using doctrine_api.Services.SQLServer;
 
@@ -11,9 +12,11 @@ using doctrine_api.Services.SQLServer;
 namespace doctrineapi.Migrations
 {
     [DbContext(typeof(DoctrinaStore))]
-    partial class DoctrinaStoreModelSnapshot : ModelSnapshot
+    [Migration("20230204160612_doctrinadtore.v1.1")]
+    partial class doctrinadtorev11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
