@@ -135,8 +135,6 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
   }
 
   async registerAccount(){
-
-    debugger
     fetch('/v1/account/register', {
       method: 'POST',
       headers: {
