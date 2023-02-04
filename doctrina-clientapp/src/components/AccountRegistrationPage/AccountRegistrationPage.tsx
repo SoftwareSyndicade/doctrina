@@ -75,9 +75,9 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
                   <FormControl fullWidth>
                     <InputLabel id='ACCOUNT_TYPE_LABLE'>Account type</InputLabel>
                     <Select labelId='ACCOUNT_TYPE_LABLE' id='ACCOUNT_TYPE' name='ACCOUNT_TYPE' value={this.state.FORM.ACCOUNT_TYPE} onChange={(e) => {this.handleChanges(e)}} label="Account type">
-                      <MenuItem value="none">None</MenuItem>
-                      <MenuItem value="student">Student</MenuItem>
-                      <MenuItem value="tutor">Tutor</MenuItem> 
+                      <MenuItem value="0">None</MenuItem>
+                      <MenuItem value="1">Student</MenuItem>
+                      <MenuItem value="2">Tutor</MenuItem> 
                     </Select>
                   </FormControl>
                   
@@ -136,6 +136,7 @@ class AccountRegistrationPage extends Component<{}, IAccountRegistrationState>{
 
   async registerAccount(){
 
+    debugger
     fetch('/v1/account/register', {
       method: 'POST',
       headers: {

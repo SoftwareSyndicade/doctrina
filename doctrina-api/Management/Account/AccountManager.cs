@@ -30,8 +30,8 @@ namespace doctrine_api.Management.Account
 
             // create ID for account
             account.ID = Guid.NewGuid().ToString();
-            // hash password.
 
+            // hash password.
             UserSecret userSecret = Utilities.Utility.GetUserSecret(null, account.PASSWORD);
 
             account.PASSWORD_HASH = userSecret.SECRET_HASH;
@@ -45,6 +45,7 @@ namespace doctrine_api.Management.Account
             if (entryCount == 1)
             {
                 saveStatus.STATUS = true;
+                saveStatus.ACCOUNT_ID = account.ID;
                 return saveStatus;
             }
             else
@@ -53,6 +54,15 @@ namespace doctrine_api.Management.Account
                 return saveStatus;
             }
 
+        }
+
+        public DataModels.Account GetAccount(string accountID)
+        {
+            DataModels.Account account;
+
+            account = (from a in _store.ACCOUNT where a.ID.Equals(accountID) select a).FirstOrDefault();
+
+            return account;
         }
     }
 }

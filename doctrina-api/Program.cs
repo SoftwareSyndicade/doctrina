@@ -1,6 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 using doctrine_api.Management.Account;
 using doctrine_api.Management.Auth;
+using doctrine_api.Management.Student;
+using doctrine_api.Management.Tutor;
 using doctrine_api.Services.SQLServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -20,6 +22,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = null;
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
 builder.Services.AddMemoryCache();
@@ -29,6 +32,8 @@ builder.Services.AddDbContext<DoctrinaStore>(options =>
 
 builder.Services.AddScoped<IAccountManager, AccountManager>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+builder.Services.AddScoped<IStudentManager, StudentManager>();
+builder.Services.AddScoped<ITutorManager, TutorManager>();
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using doctrine_api.Constants;
 
 namespace doctrine_api.DataModels
 {
@@ -44,6 +45,9 @@ namespace doctrine_api.DataModels
         public String EMAIL { get; set; }
 
         public byte[]? IMAGE { get; set; }
+
+        [Required]
+        public AccountTypes ACCOUNT_TYPE { get; set; }
 
         [Required]
         public DateTime CREATED_ON { get; set; }
