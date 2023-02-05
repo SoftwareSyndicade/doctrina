@@ -12,7 +12,7 @@ using doctrine_api.Services.SQLServer;
 namespace doctrineapi.Migrations
 {
     [DbContext(typeof(DoctrinaStore))]
-    [Migration("20230205164117_doctrinastore.v1")]
+    [Migration("20230205165543_doctrinastore.v1")]
     partial class doctrinastorev1
     {
         /// <inheritdoc />
@@ -131,17 +131,7 @@ namespace doctrineapi.Migrations
                     b.Property<int>("CATEGORY")
                         .HasColumnType("int");
 
-                    b.Property<bool>("COMPLETED")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("CREATED_BY")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CREATED_ON")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DEADLINE")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DETAILS")
@@ -150,19 +140,6 @@ namespace doctrineapi.Migrations
 
                     b.Property<int>("EDUCATION_LEVEL")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IS_RECURRING")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MEETING_LINK")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PAID")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("TUTOR")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

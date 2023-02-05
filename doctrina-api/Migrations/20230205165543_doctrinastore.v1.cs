@@ -40,15 +40,8 @@ namespace doctrineapi.Migrations
                     ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CATEGORY = table.Column<int>(type: "int", nullable: false),
                     EDUCATIONLEVEL = table.Column<int>(name: "EDUCATION_LEVEL", type: "int", nullable: false),
-                    ISRECURRING = table.Column<bool>(name: "IS_RECURRING", type: "bit", nullable: false),
                     DETAILS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TUTOR = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MEETINGLINK = table.Column<string>(name: "MEETING_LINK", type: "nvarchar(max)", nullable: true),
-                    DEADLINE = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    COMPLETED = table.Column<bool>(type: "bit", nullable: false),
-                    PAID = table.Column<bool>(type: "bit", nullable: false),
-                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false),
-                    CREATEDBY = table.Column<string>(name: "CREATED_BY", type: "nvarchar(max)", nullable: false)
+                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
