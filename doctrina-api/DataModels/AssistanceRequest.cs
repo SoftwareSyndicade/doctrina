@@ -13,30 +13,27 @@ namespace doctrine_api.DataModels
         public RequestCategories CATEGORY { get; set; }
 
         [Required]
-        public bool IS_RECURRING { get; set; }
+        public EducationLevel EDUCATION_LEVEL { get; set; }
+
+        //public bool IS_RECURRING { get; set; }
 
         [Required]
         public string DETAILS { get; set; }
 
-        [Required]
-        public string TUTOR { get; set; }
+        //public string TUTOR { get; set; }
 
-        public string MEETING_LINK { get; set; }
+        //public string? MEETING_LINK { get; set; }
 
-        [Required]
-        public DateTime DEADLINE { get; set; }
+        //public DateTime DEADLINE { get; set; }
 
-        [Required]
-        public bool COMPLETED { get; set; }
+        //public bool COMPLETED { get; set; }
 
-        [Required]
-        public bool PAID { get; set; }
+        //public bool PAID { get; set; }
 
         [Required]
         public DateTime CREATED_ON { get; set; }
 
-        [Required]
-        public string CREATED_BY { get; set; }
+        //public string CREATED_BY { get; set; }
     }
 }
 

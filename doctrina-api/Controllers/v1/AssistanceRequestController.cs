@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using doctrine_api.Constants;
 using System.Net.Mime;
+using doctrine_api.RequestModels;
+using AutoMapper;
+using doctrine_api.Management.Assistance.Request;
 
 namespace doctrine_api.Controllers.v1
 {
@@ -13,10 +16,29 @@ namespace doctrine_api.Controllers.v1
     [Produces(MediaTypeNames.Application.Json)]
     public class AssistanceRequestController : Controller
     {
-        [HttpPost(CRUDActions.REGISTER)]
-        public IActionResult Register()
+        private readonly IMapper _mapper;
+        private readonly IAssistanceRequestManager _assistanceRequestManager;
+
+        public AssistanceRequestController(IMapper mapper, IAssistanceRequestManager assistanceRequestManager)
         {
-            return Unauthorized();
+            _mapper = mapper;
+            _assistanceRequestManager = assistanceRequestManager;
+        }
+
+        [HttpPost(CRUDActions.REGISTER)]
+        public IActionResult Register([FromBody] AssistanceRequest request)
+        {
+            DataModels.AssistanceReuest assistanceRequest = _mapper.Map<DataModels.AssistanceReuest>(request);
+
+            assistanceRequest.ID = Guid.NewGuid().ToString();
+            assistanceRequest.CREATED_ON = DateTime.UtcNow;
+
+            var status = _assistanceRequestManager.Register(assistanceRequest);
+
+            if (status.IS_SAVED)
+                return StatusCode(StatusCodes.Status201Created);
+
+            return BadRequest();
         }
 
         [HttpGet(CRUDActions.FETCH)]

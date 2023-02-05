@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using doctrine_api.Management.Account;
+using doctrine_api.Management.Assistance.Request;
 using doctrine_api.Management.Auth;
 using doctrine_api.Management.Student;
 using doctrine_api.Management.Tutor;
@@ -34,6 +35,7 @@ builder.Services.AddScoped<IAccountManager, AccountManager>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 builder.Services.AddScoped<IStudentManager, StudentManager>();
 builder.Services.AddScoped<ITutorManager, TutorManager>();
+builder.Services.AddScoped<IAssistanceRequestManager, AssistanceRequestManager>();
 
 var app = builder.Build();
 

@@ -9,9 +9,6 @@ namespace doctrine_api.Mappings
     {
         public MappingProfiles()
         {
-            //CreateMap<AccountDetails, Account>()
-            //    .ForMember(dest => dest.ACCESS, opt => opt.MapFrom(src => src.ACCESS));
-
             CreateMap<AccountDetails, Account>()
             .ForMember(dest => dest.USERNAME, opt => opt.MapFrom(src => src.USERNAME))
             .ForMember(dest => dest.PASSWORD, opt => opt.MapFrom(src => src.PASSWORD))
@@ -20,6 +17,11 @@ namespace doctrine_api.Mappings
             .ForMember(dest => dest.LAST_NAME, opt => opt.MapFrom(src => src.LAST_NAME))
             .ForMember(dest => dest.EMAIL, opt => opt.MapFrom(src => src.EMAIL))
             .ForMember(dest => dest.PHONE_NUMBER, opt => opt.MapFrom(src => src.PHONE_NUMBER));
+
+            CreateMap<RequestModels.AssistanceRequest, DataModels.AssistanceReuest>()
+                .ForMember(dest => dest.DETAILS, opt => opt.MapFrom(src => src.DETAILS))
+                .ForMember(dest => dest.CATEGORY, opt => opt.MapFrom(src => src.REQUEST_CATEGORY))
+                .ForMember(dest => dest.EDUCATION_LEVEL, opt => opt.MapFrom(src => src.EDUCATION_LEVEL));
         }
     }
 }
