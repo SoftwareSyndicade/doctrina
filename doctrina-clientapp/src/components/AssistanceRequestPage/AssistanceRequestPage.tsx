@@ -1,6 +1,7 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AssistanceRequestPage.module.scss';
 
 interface AssistanceRequestForm{
@@ -10,6 +11,8 @@ interface AssistanceRequestForm{
 }
 
 const AssistanceRequestPage: React.FC = () => {
+
+  const navigate = useNavigate()
 
   const [assistanceRequestForm, setAssistanceRequestForm] = useState<AssistanceRequestForm>({
     DETAILS: "",
@@ -52,7 +55,7 @@ const AssistanceRequestPage: React.FC = () => {
           </FormControl>
 
           <div style={{textAlign:'right'}}>
-            <Button variant="contained" color="primary"> Request </Button>            
+            <Button variant="contained" color="primary" onClick={() => saveAssistanceRequest()}> Request </Button>            
           </div>
         </div>
     </Box>
@@ -66,6 +69,24 @@ const AssistanceRequestPage: React.FC = () => {
     setAssistanceRequestForm({
       ... assistanceRequestForm,
       [field.name]: field.value
+    })
+  }
+
+  function saveAssistanceRequest(){
+    fetch("/v1/assistance-request/register", {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(assistanceRequestForm)
+    }).then(res => {
+      switch(res.status){
+        case 201:
+          navigate("/home")
+          break
+        case 400:
+          break;
+      }
     })
   }
 }
