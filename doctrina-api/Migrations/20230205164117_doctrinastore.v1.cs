@@ -6,17 +6,92 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace doctrineapi.Migrations
 {
     /// <inheritdoc />
-    public partial class doctrinadtorev11 : Migration
+    public partial class doctrinastorev1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "ACCOUNT_TYPE",
-                table: "ACCOUNT",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            migrationBuilder.CreateTable(
+                name: "ACCOUNT",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    USERNAME = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    PASSWORDHASH = table.Column<string>(name: "PASSWORD_HASH", type: "nvarchar(max)", nullable: false),
+                    SALT = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    FIRSTNAME = table.Column<string>(name: "FIRST_NAME", type: "nvarchar(max)", nullable: false),
+                    MIDDELNAME = table.Column<string>(name: "MIDDEL_NAME", type: "nvarchar(max)", nullable: true),
+                    LASTNAME = table.Column<string>(name: "LAST_NAME", type: "nvarchar(max)", nullable: false),
+                    PHONENUMBER = table.Column<string>(name: "PHONE_NUMBER", type: "nvarchar(max)", nullable: false),
+                    EMAIL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IMAGE = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ACCOUNTTYPE = table.Column<int>(name: "ACCOUNT_TYPE", type: "int", nullable: false),
+                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ACCOUNT", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ASSISTANCE_REQUEST",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CATEGORY = table.Column<int>(type: "int", nullable: false),
+                    EDUCATIONLEVEL = table.Column<int>(name: "EDUCATION_LEVEL", type: "int", nullable: false),
+                    ISRECURRING = table.Column<bool>(name: "IS_RECURRING", type: "bit", nullable: false),
+                    DETAILS = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TUTOR = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MEETINGLINK = table.Column<string>(name: "MEETING_LINK", type: "nvarchar(max)", nullable: true),
+                    DEADLINE = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    COMPLETED = table.Column<bool>(type: "bit", nullable: false),
+                    PAID = table.Column<bool>(type: "bit", nullable: false),
+                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false),
+                    CREATEDBY = table.Column<string>(name: "CREATED_BY", type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ASSISTANCE_REQUEST", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "STUDENT",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ACCOUNTID = table.Column<string>(name: "ACCOUNT_ID", type: "nvarchar(450)", nullable: false),
+                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_STUDENT", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_STUDENT_ACCOUNT_ACCOUNT_ID",
+                        column: x => x.ACCOUNTID,
+                        principalTable: "ACCOUNT",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TUTOR",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ACCOUNTID = table.Column<string>(name: "ACCOUNT_ID", type: "nvarchar(450)", nullable: false),
+                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TUTOR", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_TUTOR_ACCOUNT_ACCOUNT_ID",
+                        column: x => x.ACCOUNTID,
+                        principalTable: "ACCOUNT",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "ASSISTANCE_PROPOSALS",
@@ -63,44 +138,6 @@ namespace doctrineapi.Migrations
                         name: "FK_ATTACHMENTS_ASSISTANCE_REQUEST_REQUEST_ID",
                         column: x => x.REQUESTID,
                         principalTable: "ASSISTANCE_REQUEST",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "STUDENT",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ACCOUNTID = table.Column<string>(name: "ACCOUNT_ID", type: "nvarchar(450)", nullable: false),
-                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_STUDENT", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_STUDENT_ACCOUNT_ACCOUNT_ID",
-                        column: x => x.ACCOUNTID,
-                        principalTable: "ACCOUNT",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TUTOR",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ACCOUNTID = table.Column<string>(name: "ACCOUNT_ID", type: "nvarchar(450)", nullable: false),
-                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TUTOR", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_TUTOR_ACCOUNT_ACCOUNT_ID",
-                        column: x => x.ACCOUNTID,
-                        principalTable: "ACCOUNT",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -197,14 +234,16 @@ namespace doctrineapi.Migrations
                 name: "STUDENT");
 
             migrationBuilder.DropTable(
+                name: "ASSISTANCE_REQUEST");
+
+            migrationBuilder.DropTable(
                 name: "QUALIFICATIONS");
 
             migrationBuilder.DropTable(
                 name: "TUTOR");
 
-            migrationBuilder.DropColumn(
-                name: "ACCOUNT_TYPE",
-                table: "ACCOUNT");
+            migrationBuilder.DropTable(
+                name: "ACCOUNT");
         }
     }
 }

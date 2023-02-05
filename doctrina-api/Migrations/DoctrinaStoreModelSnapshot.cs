@@ -145,11 +145,13 @@ namespace doctrineapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EDUCATION_LEVEL")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IS_RECURRING")
                         .HasColumnType("bit");
 
                     b.Property<string>("MEETING_LINK")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PAID")

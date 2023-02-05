@@ -12,8 +12,8 @@ using doctrine_api.Services.SQLServer;
 namespace doctrineapi.Migrations
 {
     [DbContext(typeof(DoctrinaStore))]
-    [Migration("20230204160612_doctrinadtore.v1.1")]
-    partial class doctrinadtorev11
+    [Migration("20230205164117_doctrinastore.v1")]
+    partial class doctrinastorev1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,11 +148,13 @@ namespace doctrineapi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EDUCATION_LEVEL")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IS_RECURRING")
                         .HasColumnType("bit");
 
                     b.Property<string>("MEETING_LINK")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PAID")
