@@ -43,12 +43,15 @@ namespace doctrine_api.Management.Auth
             if (userSecret.SECRET_HASH.Equals(userAccount.PASSWORD_HASH))
             {
                 signInResult.IS_VALIDATED = true;
+                signInResult.ACCOUNT_ID = userAccount.ID;
+                signInResult.ACCOUNT_TYPE = userAccount.ACCOUNT_TYPE;
+                signInResult.ACCESS_TOKEN = GenerateJwtToken(signInResult);
             }
 
             return signInResult;
         }
 
-        public string GenerateJwtToken(SignInResult signInResult)
+        private string GenerateJwtToken(SignInResult signInResult)
         {
 
             List<Claim> claims = new();

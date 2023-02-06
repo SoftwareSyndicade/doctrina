@@ -10,6 +10,7 @@ namespace doctrine_api.Management.Auth.Models
         public string ACCOUNT_ID { get; set; }
         public string NAME { get; set; }
         public AccountTypes ACCOUNT_TYPE { get; set; }
+        public string ACCESS_TOKEN { get; set; }
     }
 }
 
