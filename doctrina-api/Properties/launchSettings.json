@@ -14,7 +14,13 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7175;http://localhost:5270",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JWTSecret__PRIVATE_KEY": "abc",
+        "JWTSecret__PUBLIC_KEY": "",
+        "JWTSecret__ISSUER": "doctrina",
+        "JWTSecret__AUDIENCE": "doctrina",
+        "ConnectionStrings__DoctrinaStoreConnectionString": "Server=localhost,1433;Initial Catalog=doctrinadb;User ID=sa;Password=Bibek123@;TrustServerCertificate=True;Connection Timeout=30;",
+        "SECRET": ",sandjak"
       }
     },
     "IIS Express": {

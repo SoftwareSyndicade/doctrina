@@ -2,10 +2,10 @@
 using doctrine_api.Management.Account;
 using doctrine_api.Management.Assistance.Request;
 using doctrine_api.Management.Auth;
+using doctrine_api.Management.Auth.Models;
 using doctrine_api.Management.Student;
 using doctrine_api.Management.Tutor;
 using doctrine_api.Services.SQLServer;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +25,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+
+var JwtSecretKeySection = builder.Configuration.GetSection("JWTSecret");
+builder.Services.Configure<JWTSecret>(JwtSecretKeySection);
 
 builder.Services.AddMemoryCache();
 builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
