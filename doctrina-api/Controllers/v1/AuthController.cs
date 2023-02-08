@@ -44,6 +44,11 @@ namespace doctrine_api.Controllers.v1
             }
 
             response.IS_VALIDATED = true;
+            response.ACCOUNT_ID = result.ACCOUNT_ID;
+            response.ACCOUNT_TYPE = result.ACCOUNT_TYPE;
+            response.NAME = result.NAME;
+            response.ACCESS_TOKEN = result.ACCESS_TOKEN;
+
 
             return Ok(response);
         }
