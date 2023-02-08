@@ -4,6 +4,10 @@ import React, { Component, FC, useState } from 'react';
 import IFormField from '../../core/IFormField';
 import styles from './LoginPage.module.scss';
 import { useNavigate } from 'react-router-dom'
+import useAuth from '../../core/auth/useAuth';
+import Account from '../../core/auth/models/Account';
+import { useAtom } from 'jotai';
+import { userAtom } from '../../core/AtomsConfig';
 
 interface LoginForm{
   USERNAME: string,
@@ -13,6 +17,7 @@ interface LoginForm{
 const LoginPage: React.FC = () => {
 
   const navigate = useNavigate()
+  const [user, setUser] = useAtom(userAtom)
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
     USERNAME: "",
@@ -80,9 +85,29 @@ const LoginPage: React.FC = () => {
       body: JSON.stringify(loginForm)
     }).then(res => {
       switch(res.status){
-        case 200:        
-          navigate("home")  
+        case 200:{
+
+          res.json().then(data =>{
+            if(data.IS_VALIDATED){
+              let account: Account = {
+                ID: data.ACCOUNT_ID,
+                NAME: data.NAME,
+                ACCOUN_TYPE: data.ACCOUNT_TYPE,
+                ACCESS_TOKEN: data.ACCESS_TOKEN,
+                IS_AUTHENTICATED: data.IS_VALIDATED
+              }
+              
+              setUser(account)
+              
+              localStorage.setItem("ACCOUNT", JSON.stringify(account))
+
+              navigate("/home")
+            }
+          })
           break
+          
+        }        
+          
         case 400:
           break
         case 401:

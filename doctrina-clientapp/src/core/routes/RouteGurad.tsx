@@ -1,12 +1,20 @@
 
+import { ExtractAtomValue, useAtomValue } from 'jotai';
 import { Navigate, Outlet, Route } from 'react-router-dom';
 import LoginPage from '../../components/LoginPage/LoginPage';
+import { userAtom } from '../AtomsConfig';
+import useAuth from '../auth/useAuth';
 
 const RouteGuard = () =>{
-    const isAuth = true
+    const user = useAtomValue(userAtom)
+    const isAuthenticated = test(user)
+
+    function test(user: ExtractAtomValue<typeof userAtom>){
+        return user.IS_AUTHENTICATED
+    }
 
     return (
-        isAuth ? <Outlet/> : <Navigate to="/" />
+        isAuthenticated ? <Outlet/> : <Navigate to="/" />
     )
 }
 
