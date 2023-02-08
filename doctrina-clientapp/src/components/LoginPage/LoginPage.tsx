@@ -4,7 +4,6 @@ import React, { Component, FC, useState } from 'react';
 import IFormField from '../../core/IFormField';
 import styles from './LoginPage.module.scss';
 import { useNavigate } from 'react-router-dom'
-import useAuth from '../../core/auth/useAuth';
 import Account from '../../core/auth/models/Account';
 import { useAtom } from 'jotai';
 import { userAtom } from '../../core/AtomsConfig';
