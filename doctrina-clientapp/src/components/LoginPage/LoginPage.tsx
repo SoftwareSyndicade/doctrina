@@ -1,12 +1,13 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { Component, FC, useState } from 'react';
+import React, { Component, FC, useEffect, useState } from 'react';
 import IFormField from '../../core/IFormField';
 import styles from './LoginPage.module.scss';
 import { useNavigate } from 'react-router-dom'
 import Account from '../../core/auth/models/Account';
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { userAtom } from '../../core/AtomsConfig';
+import { atomWithStorage } from 'jotai/utils'
 
 interface LoginForm{
   USERNAME: string,
@@ -17,6 +18,7 @@ const LoginPage: React.FC = () => {
 
   const navigate = useNavigate()
   const [user, setUser] = useAtom(userAtom)
+   
 
   const [loginForm, setLoginForm] = useState<LoginForm>({
     USERNAME: "",
@@ -88,7 +90,7 @@ const LoginPage: React.FC = () => {
 
           res.json().then(data =>{
             if(data.IS_VALIDATED){
-              let account: Account = {
+              const account: Account = {
                 ID: data.ACCOUNT_ID,
                 NAME: data.NAME,
                 ACCOUN_TYPE: data.ACCOUNT_TYPE,
@@ -97,8 +99,6 @@ const LoginPage: React.FC = () => {
               }
               
               setUser(account)
-              
-              localStorage.setItem("ACCOUNT", JSON.stringify(account))
 
               navigate("/home")
             }

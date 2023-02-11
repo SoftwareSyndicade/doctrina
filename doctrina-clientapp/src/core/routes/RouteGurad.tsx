@@ -1,5 +1,5 @@
 
-import { ExtractAtomValue, useAtomValue } from 'jotai';
+import { ExtractAtomValue, useAtom, useAtomValue } from 'jotai';
 import { Navigate, Outlet, Route } from 'react-router-dom';
 import { userAtom } from '../AtomsConfig';
 
