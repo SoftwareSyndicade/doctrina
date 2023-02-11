@@ -1,21 +1,25 @@
 import { Button } from '@mui/material';
+import { useAtom } from 'jotai';
+import { RESET } from 'jotai/utils';
 import React, { FC } from 'react';
+import { userAtom } from '../../core/AtomsConfig';
 import styles from './HomePage.module.scss';
 
-interface HomePageProps {}
+const HomePage: React.FC = () => {
 
-class HomePage extends React.Component{
-  constructor(props: any){
-    super(props)
+  const [user, setUser] = useAtom(userAtom)
+
+  const logout = () => {
+    debugger
+    setUser(RESET)
   }
 
-  render(): React.ReactNode {
-      return(
-        <div>
-          <Button color='primary' variant='contained' href='/assistance-request'>Request assistance</Button>
-        </div>
-      )
-  }
+  return (
+    <div>
+      <Button color='primary' variant='contained' href='/assistance-request'>Request assistance</Button>
+      <Button color='primary' variant='contained' onClick={() => logout()}>Logout</Button>
+    </div>
+  )
 }
 
 export default HomePage;
