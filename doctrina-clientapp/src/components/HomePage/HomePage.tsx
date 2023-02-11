@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
   const [user, setUser] = useAtom(userAtom)
 
   const logout = () => {
-    debugger
     setUser(RESET)
   }
 
