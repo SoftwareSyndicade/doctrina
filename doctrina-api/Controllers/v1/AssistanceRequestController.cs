@@ -9,9 +9,11 @@ using doctrine_api.RequestModels;
 using AutoMapper;
 using doctrine_api.Management.Assistance.Request;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace doctrine_api.Controllers.v1
 {
+    [Authorize]
     [ApiController]
     [Route(Endpoints.ASSISTANCE_REQUEST)]
     [Produces(MediaTypeNames.Application.Json)]
@@ -25,6 +27,7 @@ namespace doctrine_api.Controllers.v1
             _mapper = mapper;
             _assistanceRequestManager = assistanceRequestManager;
         }
+
 
         [HttpPost(CRUDActions.REGISTER)]
         public IActionResult Register([FromBody] AssistanceRequest request)
@@ -49,7 +52,17 @@ namespace doctrine_api.Controllers.v1
         [HttpGet(CRUDActions.FETCH)]
         public IActionResult Fetch()
         {
-            return Unauthorized();
+            var userIdentity = HttpContext.User.Identity as ClaimsIdentity;
+            var profileID = userIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var result = _assistanceRequestManager.Fetch(profileID);
+
+            if (result == null || result.Count == 0)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
         }
 
         [HttpPut(CRUDActions.UPDATE)]

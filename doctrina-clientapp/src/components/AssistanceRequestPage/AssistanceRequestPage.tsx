@@ -3,7 +3,6 @@ import { Box } from '@mui/system';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AssistanceRequestPage.module.scss';
-import axios from 'axios'
 import { useAtomValue } from 'jotai';
 import { userAtom } from '../../core/AtomsConfig';
 

@@ -6,6 +6,7 @@ namespace doctrine_api.Management.Assistance.Request
     public interface IAssistanceRequestManager
     {
         public AssistanceRequestSaveStatus Register(DataModels.AssistanceReuest assistanceReuest);
+        public List<DataModels.AssistanceReuest> Fetch(string profileID);
     }
 }
 

@@ -24,6 +24,15 @@ namespace doctrine_api.Management.Assistance.Request
             return status;
 
         }
+
+        public List<DataModels.AssistanceReuest> Fetch(string profileID)
+        {
+            var assistanceRequest = (from ar in _store.ASSISTANCE_REQUEST
+                                     where ar.CREATED_BY.Equals(profileID)
+                                     select ar).ToList();
+
+            return assistanceRequest;
+        }
     }
 }
 
