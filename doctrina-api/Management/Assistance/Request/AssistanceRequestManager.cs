@@ -2,6 +2,7 @@ using System;
 using doctrine_api.DataModels;
 using doctrine_api.Management.Assistance.Request.Models;
 using doctrine_api.Services.SQLServer;
+using doctrine_api.Constants;
 
 namespace doctrine_api.Management.Assistance.Request
 {
@@ -25,11 +26,15 @@ namespace doctrine_api.Management.Assistance.Request
 
         }
 
-        public List<DataModels.AssistanceReuest> Fetch(string profileID)
+        public List<DataModels.AssistanceReuest> Fetch(string profileID, AccountTypes accountType)
         {
+            bool isTutor = accountType == AccountTypes.TUTOR;
+
             var assistanceRequest = (from ar in _store.ASSISTANCE_REQUEST
-                                     where ar.CREATED_BY.Equals(profileID)
                                      select ar).ToList();
+
+            if (accountType == AccountTypes.STUDENT)
+                assistanceRequest = assistanceRequest.Where(x => x.CREATED_BY.Equals(profileID)).ToList();
 
             return assistanceRequest;
         }

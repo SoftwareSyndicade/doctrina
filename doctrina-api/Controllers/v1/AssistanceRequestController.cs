@@ -10,6 +10,7 @@ using AutoMapper;
 using doctrine_api.Management.Assistance.Request;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using doctrine_api.Management.Account;
 
 namespace doctrine_api.Controllers.v1
 {
@@ -21,11 +22,13 @@ namespace doctrine_api.Controllers.v1
     {
         private readonly IMapper _mapper;
         private readonly IAssistanceRequestManager _assistanceRequestManager;
+        private readonly IAccountManager _accountManager;
 
-        public AssistanceRequestController(IMapper mapper, IAssistanceRequestManager assistanceRequestManager)
+        public AssistanceRequestController(IMapper mapper, IAssistanceRequestManager assistanceRequestManager, IAccountManager accountManager)
         {
             _mapper = mapper;
             _assistanceRequestManager = assistanceRequestManager;
+            _accountManager = accountManager;
         }
 
 
@@ -55,7 +58,9 @@ namespace doctrine_api.Controllers.v1
             var userIdentity = HttpContext.User.Identity as ClaimsIdentity;
             var profileID = userIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var result = _assistanceRequestManager.Fetch(profileID);
+            var account = _accountManager.GetAccount(profileID);
+
+            var result = _assistanceRequestManager.Fetch(profileID, account.ACCOUNT_TYPE);
 
             if (result == null || result.Count == 0)
             {

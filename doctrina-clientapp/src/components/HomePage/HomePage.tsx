@@ -54,7 +54,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <Button color='primary' variant='contained' href='/assistance-request'>Request assistance</Button>
+
+      {
+        user.ACCOUN_TYPE == "STUDENT" && <Button color='primary' variant='contained' href='/assistance-request'>Request assistance</Button>
+      }
+      
       <Button color='primary' variant='contained' onClick={() => logout()}>Logout</Button>
 
 
