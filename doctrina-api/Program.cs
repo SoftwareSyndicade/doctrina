@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Security.Cryptography;
+using System.Text.Json.Serialization;
 using doctrine_api.Management.Account;
 using doctrine_api.Management.Assistance.Request;
 using doctrine_api.Management.Auth;
@@ -6,9 +7,11 @@ using doctrine_api.Management.Auth.Models;
 using doctrine_api.Management.Student;
 using doctrine_api.Management.Tutor;
 using doctrine_api.Services.SQLServer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +31,40 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 var JwtSecretKeySection = builder.Configuration.GetSection("JWTSecret");
 builder.Services.Configure<JWTSecret>(JwtSecretKeySection);
+
+var jwtSettings = JwtSecretKeySection.Get<JWTSecret>();
+
+builder.Services.AddSingleton<RsaSecurityKey>(provider =>
+{
+    RSA rsa = RSA.Create();
+    rsa.ImportFromPem(jwtSettings.PUBLIC_KEY.ToCharArray());
+
+    return new RsaSecurityKey(rsa);
+});
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+{
+    SecurityKey rsa = builder.Services.BuildServiceProvider().GetRequiredService<RsaSecurityKey>();
+
+    options.IncludeErrorDetails = true;
+
+    options.TokenValidationParameters = new()
+    {
+        IssuerSigningKey = rsa,
+        ValidAudience = jwtSettings.AUDIENCE,
+        ValidIssuer = jwtSettings.ISSUER,
+        RequireSignedTokens = true,
+        RequireExpirationTime = true, // <- JWTs are required to have "exp" property set
+        ValidateLifetime = true, // <- the "exp" will be validated
+        ValidateAudience = true,
+        ValidateIssuer = true,
+    };
+});
 
 builder.Services.AddMemoryCache();
 builder.Services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
@@ -50,6 +87,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
