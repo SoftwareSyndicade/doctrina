@@ -3,6 +3,9 @@ import { Box } from '@mui/system';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AssistanceRequestPage.module.scss';
+import axios from 'axios'
+import { useAtomValue } from 'jotai';
+import { userAtom } from '../../core/AtomsConfig';
 
 interface AssistanceRequestForm{
   DETAILS?: string,
@@ -13,6 +16,7 @@ interface AssistanceRequestForm{
 const AssistanceRequestPage: React.FC = () => {
 
   const navigate = useNavigate()
+  const user = useAtomValue(userAtom)
 
   const [assistanceRequestForm, setAssistanceRequestForm] = useState<AssistanceRequestForm>({
     DETAILS: "",
@@ -76,7 +80,8 @@ const AssistanceRequestPage: React.FC = () => {
     fetch("/v1/assistance-request/register", {
       method: 'POST', 
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.ACCESS_TOKEN}`
       },
       body: JSON.stringify(assistanceRequestForm)
     }).then(res => {

@@ -8,6 +8,7 @@ using System.Net.Mime;
 using doctrine_api.RequestModels;
 using AutoMapper;
 using doctrine_api.Management.Assistance.Request;
+using System.Security.Claims;
 
 namespace doctrine_api.Controllers.v1
 {
@@ -28,10 +29,14 @@ namespace doctrine_api.Controllers.v1
         [HttpPost(CRUDActions.REGISTER)]
         public IActionResult Register([FromBody] AssistanceRequest request)
         {
+            var userIdentity = HttpContext.User.Identity as ClaimsIdentity;
+            var profileID = userIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             DataModels.AssistanceReuest assistanceRequest = _mapper.Map<DataModels.AssistanceReuest>(request);
 
             assistanceRequest.ID = Guid.NewGuid().ToString();
             assistanceRequest.CREATED_ON = DateTime.UtcNow;
+            assistanceRequest.CREATED_BY = profileID;
 
             var status = _assistanceRequestManager.Register(assistanceRequest);
 

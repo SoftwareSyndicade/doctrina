@@ -33,7 +33,8 @@ namespace doctrine_api.DataModels
         [Required]
         public DateTime CREATED_ON { get; set; }
 
-        //public string CREATED_BY { get; set; }
+        [Required]
+        public string CREATED_BY { get; set; }
     }
 }
 
