@@ -12,8 +12,8 @@ using doctrine_api.Services.SQLServer;
 namespace doctrineapi.Migrations
 {
     [DbContext(typeof(DoctrinaStore))]
-    [Migration("20230205165543_doctrinastore.v1")]
-    partial class doctrinastorev1
+    [Migration("20230211180507_DoctrinaStore.v1")]
+    partial class DoctrinaStorev1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,6 +130,10 @@ namespace doctrineapi.Migrations
 
                     b.Property<int>("CATEGORY")
                         .HasColumnType("int");
+
+                    b.Property<string>("CREATED_BY")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CREATED_ON")
                         .HasColumnType("datetime2");

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace doctrineapi.Migrations
 {
     /// <inheritdoc />
-    public partial class doctrinastorev1 : Migration
+    public partial class DoctrinaStorev1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,7 +41,8 @@ namespace doctrineapi.Migrations
                     CATEGORY = table.Column<int>(type: "int", nullable: false),
                     EDUCATIONLEVEL = table.Column<int>(name: "EDUCATION_LEVEL", type: "int", nullable: false),
                     DETAILS = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false)
+                    CREATEDON = table.Column<DateTime>(name: "CREATED_ON", type: "datetime2", nullable: false),
+                    CREATEDBY = table.Column<string>(name: "CREATED_BY", type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

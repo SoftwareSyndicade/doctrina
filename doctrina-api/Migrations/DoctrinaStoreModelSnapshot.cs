@@ -128,6 +128,10 @@ namespace doctrineapi.Migrations
                     b.Property<int>("CATEGORY")
                         .HasColumnType("int");
 
+                    b.Property<string>("CREATED_BY")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CREATED_ON")
                         .HasColumnType("datetime2");
 
