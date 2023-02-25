@@ -1,4 +1,4 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -55,6 +55,10 @@ const AssistanceRequestPage: React.FC = () => {
               <MenuItem value="4">Masters</MenuItem>
               <MenuItem value="5">Doctrate</MenuItem>
             </Select>                
+          </FormControl>
+
+          <FormControl>
+            <FormControlLabel control={<Checkbox/>} label="Setup Google Meet meeting." />
           </FormControl>
 
           <div style={{textAlign:'right'}}>
