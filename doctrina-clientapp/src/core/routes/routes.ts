@@ -1,4 +1,5 @@
 import AccountRegistrationPage from '../../components/AccountRegistrationPage/AccountRegistrationPage';
+import AssistanceProposal from '../../components/AssistanceProposal/AssistanceProposal';
 import AssistanceRequestPage from '../../components/AssistanceRequestPage/AssistanceRequestPage';
 import HomePage from '../../components/HomePage/HomePage';
 import LoginPage from "../../components/LoginPage/LoginPage";
@@ -29,6 +30,12 @@ export const PROTECTED_ROUTES: IRoute[] = [
         path: '/assistance-request',
         name: "",
         component: AssistanceRequestPage,
+        exact: true
+    },
+    {
+        path: '/assistance-proposal',
+        name: "",
+        component: AssistanceProposal,
         exact: true
     }
 ]
