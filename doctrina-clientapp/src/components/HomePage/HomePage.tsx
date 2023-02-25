@@ -77,6 +77,10 @@ const HomePage: React.FC = () => {
                     <Typography variant='body2'>{assistanceRequest.DETAILS}</Typography>
                   </CardContent>
                   
+                  
+                  {
+                    user.ACCOUN_TYPE == "TUTOR" && <Button color='primary' variant='contained'> Add proposal </Button>
+                  }
                 </Card>
               </Box>
               
