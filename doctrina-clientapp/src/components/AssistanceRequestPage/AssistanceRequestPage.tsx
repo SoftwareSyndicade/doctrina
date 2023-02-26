@@ -9,7 +9,8 @@ import { userAtom } from '../../core/AtomsConfig';
 interface AssistanceRequestForm{
   DETAILS?: string,
   REQUEST_CATEGORY: string,
-  EDUCATION_LEVEL: string
+  EDUCATION_LEVEL: string,
+  SETUP_MEETING: boolean
 }
 
 const AssistanceRequestPage: React.FC = () => {
@@ -20,7 +21,8 @@ const AssistanceRequestPage: React.FC = () => {
   const [assistanceRequestForm, setAssistanceRequestForm] = useState<AssistanceRequestForm>({
     DETAILS: "",
     REQUEST_CATEGORY: "",
-    EDUCATION_LEVEL: ""
+    EDUCATION_LEVEL: "",
+    SETUP_MEETING: false
   })
 
   return (
@@ -58,7 +60,7 @@ const AssistanceRequestPage: React.FC = () => {
           </FormControl>
 
           <FormControl>
-            <FormControlLabel control={<Checkbox/>} label="Setup Google Meet meeting." />
+            <FormControlLabel control={<Checkbox name='SETUP_MEETING' checked={assistanceRequestForm.SETUP_MEETING} onChange={(e) => handleCheckboxChange(e)}/>}  label="Setup Google Meet meeting." />
           </FormControl>
 
           <div style={{textAlign:'right'}}>
@@ -68,6 +70,15 @@ const AssistanceRequestPage: React.FC = () => {
     </Box>
     </Box>
   )
+
+  function handleCheckboxChange(e: React.ChangeEvent) {
+    let field = e.target as HTMLInputElement
+
+    setAssistanceRequestForm({
+      ... assistanceRequestForm,
+      [field.name]: field.checked
+    })
+  }
 
   function handleChanges(e: React.ChangeEvent | SelectChangeEvent){
 

@@ -11,7 +11,8 @@ interface AssistanceRequest{
   DETAILS: string,
   EDUCATION_LEVEL: string,
   CATEGORY: string,
-  CREATED_ON: string
+  CREATED_ON: string,
+  SETUP_MEETING: boolean
 }
 
 const HomePage: React.FC = () => {
@@ -36,7 +37,6 @@ const HomePage: React.FC = () => {
         case 200:{
 
           res.json().then(data => {
-            debugger
             setAssistanceRequests(data)
           })
 
@@ -75,9 +75,16 @@ const HomePage: React.FC = () => {
                   
                   <CardContent>
                     <Typography variant='body2'>{assistanceRequest.DETAILS}</Typography>
+
+                    <div style={{padding:'5px 10px', background:'#f5f5f5', marginTop:'0.50rem'}}>
+                      {
+                      assistanceRequest.SETUP_MEETING && <Typography variant='subtitle2'>Link to Google Meet meeting will be available once proposal is accepted.</Typography>
+                      }
+                    </div>
+
+                    
                   </CardContent>
-                  
-                  
+
                   {
                     user.ACCOUN_TYPE == "TUTOR" && <Button color='primary' variant='contained'> Add proposal </Button>
                   }
