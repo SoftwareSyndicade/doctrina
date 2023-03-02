@@ -13,6 +13,8 @@ namespace doctrine_api.RequestModels
 
         [Required]
         public EducationLevel EDUCATION_LEVEL { get; set; }
+
+        public bool SETUP_MEETING { get; set; }
     }
 }
 
