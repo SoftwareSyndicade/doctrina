@@ -20,7 +20,7 @@ namespace doctrine_api.DataModels
         [Required]
         public string DETAILS { get; set; }
 
-        public bool STEUP_MEETING { get; set; }
+        public bool SETUP_MEETING { get; set; }
 
         //public string TUTOR { get; set; }
 

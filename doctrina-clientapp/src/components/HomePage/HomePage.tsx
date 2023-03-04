@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     loadAssistanceRequest()
-  })
+  }, [])
 
   return (
     <div>

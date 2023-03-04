@@ -21,7 +21,8 @@ namespace doctrine_api.Mappings
             CreateMap<RequestModels.AssistanceRequest, DataModels.AssistanceReuest>()
                 .ForMember(dest => dest.DETAILS, opt => opt.MapFrom(src => src.DETAILS))
                 .ForMember(dest => dest.CATEGORY, opt => opt.MapFrom(src => src.REQUEST_CATEGORY))
-                .ForMember(dest => dest.EDUCATION_LEVEL, opt => opt.MapFrom(src => src.EDUCATION_LEVEL));
+                .ForMember(dest => dest.EDUCATION_LEVEL, opt => opt.MapFrom(src => src.EDUCATION_LEVEL))
+                .ForMember(dest => dest.SETUP_MEETING, opt => opt.MapFrom(src => src.SETUP_MEETING));
         }
     }
 }

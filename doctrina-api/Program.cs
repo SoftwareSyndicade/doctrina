@@ -6,12 +6,14 @@ using doctrine_api.Management.Auth;
 using doctrine_api.Management.Auth.Models;
 using doctrine_api.Management.Student;
 using doctrine_api.Management.Tutor;
+using doctrine_api.Services.Google.Calendar;
 using doctrine_api.Services.SQLServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using doctrine_api.Services.Google.Calendar.models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+
+var googleClientSecrets = builder.Configuration.GetSection("GoogleClientSecrets");
+builder.Services.Configure<GoogleClientSecret>(googleClientSecrets);
 
 var JwtSecretKeySection = builder.Configuration.GetSection("JWTSecret");
 builder.Services.Configure<JWTSecret>(JwtSecretKeySection);
@@ -76,6 +81,7 @@ builder.Services.AddScoped<IAuthManager, AuthManager>();
 builder.Services.AddScoped<IStudentManager, StudentManager>();
 builder.Services.AddScoped<ITutorManager, TutorManager>();
 builder.Services.AddScoped<IAssistanceRequestManager, AssistanceRequestManager>();
+builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
 
 var app = builder.Build();
 
