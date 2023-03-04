@@ -57,6 +57,7 @@
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Services\Google\" />
     <None Remove="Services\Google\Calendar\" />
+    <None Remove="Services\Google\Calendar\models\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -82,5 +83,6 @@
     <Folder Include="Management\Assistance\Request\Models\" />
     <Folder Include="Services\Google\" />
     <Folder Include="Services\Google\Calendar\" />
+    <Folder Include="Services\Google\Calendar\models\" />
   </ItemGroup>
 </Project>

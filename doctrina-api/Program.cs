@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using doctrine_api.Services.Google.Calendar.models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+
+var googleClientSecrets = builder.Configuration.GetSection("GoogleClientSecrets");
+builder.Services.Configure<GoogleClientSecret>(googleClientSecrets);
 
 var JwtSecretKeySection = builder.Configuration.GetSection("JWTSecret");
 builder.Services.Configure<JWTSecret>(JwtSecretKeySection);

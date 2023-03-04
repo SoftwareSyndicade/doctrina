@@ -3,6 +3,8 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
+using doctrine_api.Services.Google.Calendar.models;
+using Microsoft.Extensions.Options;
 
 namespace doctrine_api.Services.Google.Calendar
 {
@@ -10,13 +12,13 @@ namespace doctrine_api.Services.Google.Calendar
     {
         private CalendarService _calendarService;
 
-        public GoogleCalendarService()
+        public GoogleCalendarService(IOptions<GoogleClientSecret> clientSecrets)
         {
             UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                new ClientSecrets
                {
-                   ClientId = "838726120450-ns7pqcq4fh3eaap7l52dp2kke65cfj0k.apps.googleusercontent.com",
-                   ClientSecret = "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"
+                   ClientId = clientSecrets.Value.CLIENT_ID,
+                   ClientSecret = clientSecrets.Value.CLIENT_SECRET
                },
                new[] { CalendarService.Scope.Calendar },
                "user",
