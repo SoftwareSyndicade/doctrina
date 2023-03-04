@@ -32,26 +32,22 @@ namespace doctrine_api.Services.Google.Calendar
             });
         }
 
-        public void RegisterEvent()
+        public void RegisterEvent(CalendarEvent cv)
         {
             Event calendarEvent = new()
             {
-                Summary = "Test summary",
-                Location = "Test location",
-                Description = "Test description",
+                Summary = cv.SUMMARY,
+                Location = cv.LOCATION,
+                Description = cv.DESCRIPTION,
                 Start = new()
                 {
-                    DateTime = DateTime.UtcNow.AddDays(3)
+                    DateTime = cv.START
                 },
                 End = new()
                 {
-                    DateTime = DateTime.UtcNow.AddDays(4)
+                    DateTime = cv.END
                 },
-                Attendees = new EventAttendee[]
-                {
-                    new() { Email = "itsbibeksaini@gmail.com" },
-                    new() { Email = "manu_prashar@hotmail.com" }
-                },
+                Attendees = cv.ATTENDEES,
 
                 ConferenceData = new()
                 {
@@ -69,7 +65,6 @@ namespace doctrine_api.Services.Google.Calendar
                 EventsResource.InsertRequest insertRequest = _calendarService.Events.Insert(calendarEvent, "primary");
                 insertRequest.ConferenceDataVersion = 1;
                 Event newEvent = insertRequest.Execute();
-                Console.WriteLine("Event created {0}", newEvent.HtmlLink);
             }
             catch (Exception e)
             {

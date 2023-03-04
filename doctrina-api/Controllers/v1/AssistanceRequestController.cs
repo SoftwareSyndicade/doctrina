@@ -54,7 +54,21 @@ namespace doctrine_api.Controllers.v1
 
             var status = _assistanceRequestManager.Register(assistanceRequest);
 
-            _googleCalendarService.RegisterEvent();
+            var userAccount = _accountManager.GetAccount(profileID);
+
+
+            if (assistanceRequest.SETUP_MEETING)
+                _googleCalendarService.RegisterEvent(new()
+                {
+                    DESCRIPTION = assistanceRequest.DETAILS,
+                    SUMMARY = assistanceRequest.CATEGORY + " event",
+                    ATTENDEES = new EventAttendee[] {
+                    new(){ Email = userAccount.EMAIL }
+                },
+                    START = assistanceRequest.CREATED_ON,
+                    END = assistanceRequest.CREATED_ON.AddDays(1),
+                    SETUP_MEET = assistanceRequest.SETUP_MEETING
+                });
 
 
             if (status.IS_SAVED)
