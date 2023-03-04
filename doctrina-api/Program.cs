@@ -6,6 +6,7 @@ using doctrine_api.Management.Auth;
 using doctrine_api.Management.Auth.Models;
 using doctrine_api.Management.Student;
 using doctrine_api.Management.Tutor;
+using doctrine_api.Services.Google.Calendar;
 using doctrine_api.Services.SQLServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -76,6 +77,7 @@ builder.Services.AddScoped<IAuthManager, AuthManager>();
 builder.Services.AddScoped<IStudentManager, StudentManager>();
 builder.Services.AddScoped<ITutorManager, TutorManager>();
 builder.Services.AddScoped<IAssistanceRequestManager, AssistanceRequestManager>();
+builder.Services.AddScoped<IGoogleCalendarService, GoogleCalendarService>();
 
 var app = builder.Build();
 
